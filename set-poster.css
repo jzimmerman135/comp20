@@ -1,0 +1,56 @@
+setlist {
+    background-color: #1a1a1d;
+}
+
+song {
+    padding: 10px;
+    vertical-align: middle;
+    margin: 15px;
+    width: 15%;
+    height: 250px;
+    display: inline-block;
+    position: relative;
+    border-style: solid;
+    border-color: #2abff5;
+}
+
+track {
+    margin-top: 5%;
+    display: block;
+    color: #2abff5;
+    font-size: 25px;
+    font-weight: 600;
+    font-family: sans-serif;
+    text-align: center;
+}
+
+artist {
+    margin-top: 15%;
+    display: block;
+    color: #57a8ff;
+    font-size: 20px;
+    font-weight: 300;
+    font-family: sans-serif;
+    text-align: center;
+    margin-bottom: 15%;
+}
+
+genre, released {
+    padding-bottom: 10px;
+    display: block;
+    color: #84a8b5;
+    font-size: 20px;
+    font-weight: 300;
+    font-family: sans-serif;
+    text-align: center;
+}
+
+setTitle {
+    display: block;
+    padding: 1em;
+    color: #2abff5;
+    font-size: 60px;
+    font-weight: 600;
+    font-family: sans-serif;
+    text-align: center;
+}

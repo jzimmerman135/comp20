@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet href="set-poster.css"?>
+
+<setlist>
+    <setTitle>Classic Americana Covers</setTitle>
+    <song>
+        <track>Just the Other Side of Nowhere</track>
+        <artist>Kris Kristofferson</artist>
+        <genre>Country</genre>
+        <released>1970</released>
+    </song>
+    <song>
+        <track>Sunday Morning Coming Down</track>
+        <artist>Kris Kristofferson</artist>
+        <genre>Country</genre>
+        <released>1970</released>
+    </song>
+    <song>
+        <track>Casey's Last Ride</track>
+        <artist>Kris Kristofferson</artist>
+        <genre>Country</genre>
+        <released>1970</released>
+    </song>
+    <song>
+        <track>Flesh and Blood</track>
+        <artist>Johnny Cash</artist>
+        <genre>Country</genre>
+        <released>1970</released>
+    </song>
+    <song>
+        <track>If I Were a Carpenter</track>
+        <artist>Ramblin' Jack Elliot</artist>
+        <genre>Folk</genre>
+        <released>1968</released>
+    </song>
+    <song>
+        <track>Don't Think Twice, It's Alright</track>
+        <artist>Ramblin' Jack Elliot</artist>
+        <genre>Folk</genre>
+        <released>1968</released>
+    </song>
+    <song>
+        <track>Waitin' Around to Die</track>
+        <artist>Townes Van Zandt</artist>
+        <genre>Country</genre>
+        <released>1969</released>
+    </song>
+    <song>
+        <track>Morning Dew</track>
+        <artist>Grateful Dead</artist>
+        <genre>Jam</genre>
+        <released>1967</released>
+    </song>
+    <song>
+        <track>Wayfaring Stranger</track>
+        <artist>Bill Monroe and His Blue-Grass Boys</artist>
+        <genre>Bluegrass</genre>
+        <released>1993</released>
+    </song>
+    <song>
+        <track>Can't Find My Way Home</track>
+        <artist>Bonnie Raitt</artist>
+        <genre>Country</genre>
+        <released>1972</released>
+    </song>
+</setlist>
