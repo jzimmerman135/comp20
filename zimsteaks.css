@@ -1,0 +1,166 @@
+body {
+    background-color: #9c4354;    
+}
+
+.container {
+    position: relative;
+    margin-top: 10px;
+    text-align: center;
+    border-style: solid;
+    border-width: 3px;
+    border-color: #1A1A1D;
+    background-color: #853545;
+}
+
+
+img.background{
+    width:100%;
+    opacity: 0.15;
+    filter: brightness(100%) grayscale(20%);
+}
+
+hr{
+    height: 2px;
+    background-color: #950740;
+    color: #950740;
+    border: none;
+    margin: 0;
+    }
+
+ul {
+    list-style-type: none;
+    background-color: #1A1A1D;
+    overflow: hidden;
+    margin: 0px;
+    padding: 8px;
+    text-decoration: none;
+}
+
+li {
+    float: left;
+}
+
+li.right {
+    float:right; 
+    margin-right:16%; 
+    background-color: #c3073f;
+    border-style: solid;
+    border-color: #a30544;
+    border-width: 2px;
+}
+
+li.right a{
+    color: #1A1A1D;
+}
+
+li.right a:hover{
+    background-color: #d60040;
+    color: black;
+}
+
+li a {
+    font-weight: bolder;
+    font-size: 20px;
+    display: block;
+    padding: 10px 30px;
+    color: #950740;
+    text-align: center;
+    background-color: none;
+    text-decoration: none;  
+}
+
+li a:hover {
+    display: block;
+    background-color: #15151c;
+    color: #c3073f;
+}
+
+h1.titlebar {
+    text-align: center;
+    display: block;
+    background-color: #1A1A1D;
+    color: #c3073f;
+    font-size: 50px;
+    padding: 15px;
+    margin: 0;
+    font-weight:600;
+    overflow: hidden;
+}
+
+h1.footerbar {
+    text-align: center;
+    display: block;
+    background-color: #1A1A1D;
+    color: #950740;
+    font-size: 20px;
+    padding: 25px;
+    margin: 0;
+    font-weight:600;
+    bottom: 0;
+    overflow: hidden;
+    position: relative;
+}
+
+.centerbox {
+    margin: 40px;
+    text-indent: 35px;
+    padding: 20px;
+    font-size: 25px;
+    color:#1A1A1D;
+    font-family: sans-serif;
+    line-height: 38px;
+    font-weight: 400;
+}
+
+div.motto{
+    width: 60%;
+    font-size: 70px;
+    font-weight:bold;
+    font-family: "Lucida Handwriting";
+    position: absolute;
+    color: #1A1A1D;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.background-image-blurred-edge {
+    display: inline-block;
+    vertical-align: baseline;
+    width: 200px;
+    height: 200px;
+    margin-left: 20%;
+    background-image: url('Max-Zimmerman.jpg');
+    background-size: cover;
+    /* you need to match the shadow color to your background or image border for the desired effect*/
+    box-shadow: 0 0 8px 8px #9c4354 inset;
+    border-style: none;
+    border-color: #1A1A1D;
+}
+
+.sidebox{
+    margin-left: 3%;
+    height: 200px;
+    overflow: hidden;
+    width: 400px;
+    font-size: 25px;
+    color:#1A1A1D;
+    font-family: sans-serif;
+    line-height: 38px;
+    font-weight: 200;
+    display: inline-block;
+    border-style: none;
+    border-color: #1A1A1D;
+}
+
+@media screen and (max-width: 600px) {
+    div.motto{
+        font-size: 30px;
+    }
+    li.right {
+        float: left;
+        margin: 0px;
+        margin-left: 5px;
+    }
+        
+}
