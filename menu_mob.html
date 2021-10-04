@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="utf-8">
+        <meta content="width=device-width, initial-scale=1" name="viewport" />
+        <title>Menu Page</title>
+        <link rel="stylesheet" href="zimsteaks_mob.css"> 
+        <style>
+            .menu-row{
+                display: flex;
+                left: 50%;
+                flex-direction: row;
+                justify-content: center;
+                color: #1A1A1D;
+            }
+            .menu-item{
+                margin: 2em;
+                width: 500px;
+                font-family: sans-serif;
+                font-size: 30px;
+                font-weight: 400;
+            }
+            .item-desc{
+                margin-top: 1em;
+                font-size: 20px;
+                font-weight: 200;
+            }
+            
+            @media screen and (max-width:600px) {
+                .menu-row{
+                    display: block;
+                    width: 80%;
+                }
+                .menu-item{
+                    width: inherit;
+                    font-size: 20px;
+                }
+                .item-desc{
+                    font-size: 15px;
+                    width: 100%;
+                }    
+            }
+        </style>
+    </head>
+    <body>
+        <div class="companyHeader">ZIM'S CHEESESTEAKS</div>
+        <hr></hr>
+
+            <ul class="topnav">
+                <li class="left"> <a href="index.html">Home</a> </li>
+                <li> <a href="contact_mob.html">Hours</a> </li>
+                <li> <a href="contact_mob.html">Contact</a> </li>
+                <li class="right"> <a href="#Menu">Menu</a> </li>
+            </ul>
+        <div class="pageMotto">
+            <img class="mottoBackground" src="cheesesteak.jpg" height="20px">
+            <div class="motto">Menu</div>
+        </div>
+        <div class="menu-row">
+            <div class="menu-item">Classic Steak Wit $8
+                <div class="item-desc">Classic cheesesteak on Amoroso Roll with
+                     American cheese and caremelized onions</div>
+            </div>
+            <div class="menu-item">Classic Steak Witout $8
+                <div class="item-desc">Classic cheesesteak without onions</div>
+            </div>
+            <div class="menu-item">Pizza Steak $9
+                <div class="item-desc">Classic Cheesesteak covered in Pizza sauce, ordered wit or witout</div>
+            </div>
+        </div>
+        <div class="menu-row">
+            <div class="menu-item">Pepper Steak $10
+                <div class="item-desc">Classic cheesesteak with onions, roasted peppers and sauteed mushrooms.</div>
+            </div>
+            <div class="menu-item">Zimdog $5
+                <div class="item-desc">Footlong hotdog topped with chili from a can and mac n' cheese from a box. 
+                    Entirely prepared in a microwave.</div>
+            </div>
+            <div class="menu-item">Recycled Steak $3.59
+                <div class="item-desc">From the trash, back to the grill, to the table again. Cheap and Eco-Friendly.
+                <div style="font-size: 0.5em">** Must Sign Waiver With Purchase **</div>
+                </div>
+            </div>
+        </div>
+        <div class="companyFooter">Proudly Serving Philadelphia Since 1902</div>    
+    </body>
+</html>
