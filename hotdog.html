@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Joe's Hotdog Stand</title>
+</head>
+<style>
+    .display{
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+    }
+    #items {
+        list-style-type: none;
+        align-items: center;
+        text-align: center;
+        font-size: 20px;
+    }
+</style>
+<body>
+    <h1 style="text-align: center;">Joe's Hotdog Stand</h1>
+    <div class="display">
+    <ul id="dummyColumn"></ul>
+    <ul id="items">
+        <li>Hotdogs</li>
+        <li>Fries</li>
+        <li>Drinks</li>
+        <li>Subtotal</li>
+        <li>Discount</li>
+        <li>Tax</li>
+        <li><strong>Total</strong></li>
+    </ul>
+    <ul id="items">
+        <li id="numHotdogs"></li>
+        <li id="numFries"></li>
+        <li id="numDrinks"></li>
+        <li id="subtotal">$</li>
+        <li id="discount">No Discount</li>
+        <li id="tax">6.25%</li>
+        <li id="total">$</li>
+    </ul>
+    <ul id="dummyColumn"></ul>
+    </div>
+    <div style="width: 200px; text-align: center; margin: auto; justify-content: center;">
+        <svg id="code128"></svg>
+    </div>
+</body>
+<script src="JsBarcode.code128.min.js"></script>
+<script>
+    var n_hotdogs = prompt("How Many Hotdogs");
+    var n_fries = prompt("How Many Fries");
+    var n_drinks = prompt("How Many Drinks");
+    var mass_tax = 1.0625;
+    var p_fries = 2.00;
+    var p_hotdog = 3.75;
+    var p_drink = 1.50;
+    var joes_special = 0.9;
+
+    document.getElementById("numHotdogs").innerHTML = n_hotdogs;
+    document.getElementById("numDrinks").innerHTML = n_drinks;
+    document.getElementById("numFries").innerHTML = n_fries;
+    
+    var subtotal = (n_hotdogs * p_hotdog) + (n_fries * p_fries) + (n_drinks * p_drink);
+    document.getElementById("subtotal").innerHTML += subtotal;
+     
+    if (subtotal >= 20){
+        subtotal = joes_special*subtotal;
+        document.getElementById("discount").innerHTML = "10% Off";
+    }
+  
+    var total = subtotal*mass_tax;
+    total = total.toFixed(2);
+    document.getElementById("total").innerHTML += total;
+    // custom barcode for each sale for future reference
+    JsBarcode("#code128", total.toString() + n_hotdogs.toString() + n_fries.toString() + n_drinks.toString());
+</script>
+</html>
