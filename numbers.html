@@ -1,0 +1,124 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Amicable Pairs</title>
+</head>
+<body>
+    <input id="firstNum" type="text" placeholder="First Number">
+    <input id="secondNum" type="text" placeholder="Second Number">
+    <button onclick="testAmicable()">Test Amicable Pair</button>
+    <button onclick="showFactors()">Show Factors</button>
+    <div id="output"></div>
+    <div id="factors"></div>
+    <div id="sum"></div>
+    <br><br><br><br><br>
+    <div>**This may take a minute**</div>
+    <button onclick="showAllPairs()">SHOW ALL AMICABLE PAIRS UP TO 1 MILLION</button>
+</body>
+<script>
+    function testAmicable(){
+        let x = document.getElementById("firstNum").value;
+        let y = document.getElementById("secondNum").value;
+        document.getElementById("output").innerHTML = "";
+        document.getElementById("output").innerHTML = x + " and " + y + " are ";
+        if (!isAmicablePair(x,y)){
+            document.getElementById("output").innerHTML += "not ";
+        }
+        document.getElementById("output").innerHTML += "amicable";
+    }
+
+    function showFactors(){
+        let x = document.getElementById("firstNum").value;
+        let y = document.getElementById("secondNum").value;
+        alert(x +"'s factors: "+ getFactors(x) + "\n" + y +"'s factors: " + getFactors(y));
+    }
+
+    function getFactors(n){
+        var factors = [];
+
+        for (var i=1; i < Math.sqrt(n)+1 ;i++){
+            if (isFactor(n,i)){
+                if (i == factors[factors.length - 1] && (i*i != n)) {
+                    return factors;
+                }
+                else {
+                    factors.push(i);
+                    if (i != 1 && (i*i != n)){
+                    factors.push(n/i);
+                    }
+                }
+            }
+        }
+        return factors.sort(function(a, b){return a - b});
+        return factors;
+    }
+
+    function isFactor(n,i){
+        return (n%i == 0);
+    }
+
+    function sumArray(arr){
+        var sum;
+        if (arr.length == 0){
+            return 0;
+        }
+        sum = arr[arr.length - 1];
+        arr.pop();
+        return sum + sumArray(arr);
+    }
+
+    function hasAmicablePair(x) {
+        let sum = sumArray(getFactors(x));
+        let complement = sumArray(getFactors(sum));
+        if (x == complement && x != sum){
+            console.log(x + "'s sum is " + sum);
+            return true;
+        }
+    }
+
+    function isAmicablePair(x,y) {
+        let sum1 = sumArray(getFactors(x));
+        let sum2 = sumArray(getFactors(y));
+        if (sum1 == y && sum2 == x){
+            return true;
+        }
+
+        return false;
+    }
+
+    function showAllPairs(){
+        var pairs = [];
+        for (var i=0;i<1000000;i++){
+            if (hasAmicablePair(i)){
+                if (!isIn(i,pairs)){
+                    pairs.push(i);
+                    pairs.push(sumArray(getFactors(i)));
+                }
+            }
+        }
+        printPairs(pairs);
+    }
+
+    function isIn(n,arr){
+        for (var i=0;i<arr.length;i++){
+            if (n == arr[i]){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    function printPairs(array){
+        let count = 1;
+        for (let i = 0; i < array.length; i++) {
+            document.write(array[i] + " ");
+            if (count%2 == 0){
+                document.write("<br>")
+            }
+            count++;
+        }
+    }
+</script>
+</html>
