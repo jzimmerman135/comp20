@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="lottoBackend.js"></script>
+    <script src="lottoBackend2.js"></script>
+    <title>Document</title>
+    <style>
+        #winningNumbers, #myNumbers {
+        display: flex;
+        list-style-type: none;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-evenly;
+        font-size: 40px;
+        }
+        .num {
+            font-size: 25px;
+            margin: 10px;
+        }
+        .pagewrap {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        #win1,#win2,#win3,#win4,#win5,#winLucky,#my1,#my2,#my3,#my4,#my5,#myLucky{
+            margin: 0.25em;
+        }
+        #cash{
+            font-size: 30px;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+    <div class="pagewrap">
+    <ul id="winningNumbers" style="border-style: solid;">Winning Numbers:
+        <li id="win1"></li>
+        <li id="win2"></li>
+        <li id="win3"></li>
+        <li id="win4"></li>
+        <li id="win5"></li>
+        <li id="winLucky" style="color:rgb(15, 191, 15)"></li>
+    </ul>
+    <ul id="myNumbers"">Pick Sorted:
+        <li id="my1"></li>
+        <li id="my2"></li>
+        <li id="my3"></li>
+        <li id="my4"></li>
+        <li id="my5"></li>
+        <li id="myLucky" style="color:rgb(15, 191, 15)"></li>
+    </ul>
+
+    <button onclick="displayWinners(winArr,winLucky); displayCash(cashOut, matchLucky);">
+        Show Winning Numbers</button>
+    
+    <p id="cash"></p>
+    <p id="matches"></p>
+    <p id="lucky"></p>
+
+
+    </div>
+    <script>
+        var myArr = getMyNums();
+        var winArr = createWinners();
+        var myLucky = getMyLucky(); 
+        var winLucky = createWinningLucky();
+        displayMine(myArr,myLucky);
+        var matches = calcMatches(winArr,myArr);
+        var matchLucky = false;
+        if (myLucky == winLucky){
+            matchLucky = true;
+        }
+        var cashOut = calcWinnings(matches, matchLucky);
+
+    </script>
+    
+</body>
+</html>   

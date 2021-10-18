@@ -1,0 +1,103 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lottery</title>
+</head>
+<body>
+    
+</body>
+<script>
+    var randoms = [];
+    var randLucky;
+    makeRandoms();
+    document.write("Random Pick: " + randoms + " lucky " + randLucky + "<br>");
+    document.write("Random Pick Sorted: " + randoms.sort(function(a, b){return a-b}) + " lucky " + randLucky + "<br>");
+    var winners = [];
+    var winLucky;
+    makeWinners();
+    document.write("Winning Pick: " + winners + " lucky " + winLucky + "<br>");
+    var matches = calcMatches(winners,randoms);
+    document.write("Number matching: " + matches + "<br>");
+    var matchLucky = true;
+    document.write("Lucky ball does ");
+    if (randLucky != winLucky){
+        matchLucky = false;
+        document.write("not ");
+    }
+    document.write("match <br>");
+    document.write("You win " + calcWinnings(matches,matchLucky));
+
+
+    function makeRandoms(){
+        for (var i=0;i<5;i++){
+            randoms[i] = parseInt(Math.random() * 47 + 1);
+        }
+        randLucky = parseInt(Math.random() * 17 + 1);
+    }
+    function makeWinners(){
+        let nums = prompt("Enter 5 winning numbers separated by a space");
+        if (nums == ""){
+            nums = "10 11 17 27 32";
+        }
+        winners = nums.split(" ");
+        winners.sort(function(a, b){return a-b});
+        let x = prompt("Enter your lucky number");
+        if (x == ""){
+            x = "15";
+        }
+        winLucky = x;  
+    }
+    function calcMatches(winArr, myArr) {
+        let result = 0;
+        for (var i=0;i<5;i++){
+            for (var j=0;j<5;j++){
+                if (winArr[i] == myArr[j]){
+                    result++;
+                }
+            }
+        }
+        return result;
+    }
+
+    function calcWinnings(matches, matchLucky){
+        if (matches == 5){
+            if (matchLucky){
+                return "$7,000 a WEEK for LIFE";
+            }
+            return "$25,000 a YEAR for LIFE";
+        }
+        else if (matches == 4){
+            if (matchLucky){
+                return "$5,000";
+            }
+            return "$200";
+        }
+        else if (matches == 3){
+            if (matchLucky){
+                return "$150";
+            }
+            return "$20";
+        }
+        else if (matches == 2){
+            if (matchLucky){
+                return "$25";
+            }
+            return "$3";
+        }
+        else if (matches == 1){
+            if (matchLucky){
+                return "$6";
+            }
+        }
+        else if (matches == 0){
+            if (matchLucky){
+                return "$4";
+            }
+        }
+        return "nothing. Try again";
+    }
+
+</script>
+</html>
