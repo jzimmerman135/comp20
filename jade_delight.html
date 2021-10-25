@@ -1,0 +1,219 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Jade Delight</title>
+</head>
+
+<body>
+<script language="javascript">
+
+function MenuItem(name, cost)
+{
+	this.name = name;
+	this.cost=cost;
+}
+
+menuItems = new Array(
+	new MenuItem("Chicken Chop Suey", 4.5),
+	new MenuItem("Sweet and Sour Pork", 6.25),
+	new MenuItem("Shrimp Lo Mein", 5.25),
+	new MenuItem("Moo Shi Chicken", 6.5),
+	new MenuItem("Fried Rice", 2.35)
+);
+
+function makeSelect(name, minRange, maxRange)
+{
+	var t= "";
+	t = "<select name='" + name + "' size='1'>";
+	for (j=minRange; j<=maxRange; j++)
+	   t += "<option>" + j + "</option>";
+	t+= "</select>"; 
+	return t;
+}
+</script>
+
+<h1>Jade Delight</h1>
+<form>
+
+<p>First Name: <input type="text"  name='fname' /></p>
+<p>Last Name*:  <input type="text"  name='lname' /></p>
+<p name="addressInfo">Street: <input type="text"  name='street'/></p>
+<p name="addressInfo">City: <input type="text"  name='city'/></p>
+<p>Phone*: <input type="text"  name='phone' id="phone"/></p>
+<p> 
+	<input type="radio"  name="p_or_d" value = "pickup" checked="checked" onclick="toggleAddress()"/>Pickup  
+	<input type="radio"  name='p_or_d' value = 'delivery' onclick="toggleAddress()">Delivery
+</p>
+<table border="0" cellpadding="3">
+  <tr>
+    <th>Select Item</th>
+    <th>Item Name</th>
+    <th>Cost Each</th>
+    <th>Total Cost</th>
+  </tr>
+<script language="javascript">
+
+  var s = "";
+  for (i=0; i< menuItems.length; i++)
+  {
+	  s += "<tr><td>";
+	  s += makeSelect("quan" + i, 0, 10);
+	  s += "</td><td>" + menuItems[i].name + "</td>";
+	  s += "<td> $ " + menuItems[i].cost.toFixed(2) + "</td>";
+	  s += "<td>$<input type='text' name='cost'/></td></tr>";
+  }
+  document.writeln(s);
+</script>
+</table>
+<p>Subtotal: 
+   $<input type="text"  name='subtotal' id="subtotal" />
+</p>
+<p>Mass tax 6.25%:
+  $ <input type="text"  name='tax' id="tax" />
+</p>
+<p>Total: $ <input type="text"  name='total' id="total" />
+</p>
+
+<input onclick="submitOrder()" type = "button" value = "Submit Order" />
+
+</form>
+</body>
+
+<!-- JACOB's ADDITIONS TO CODE -->
+<!-- NOTE: I added an id attribute to the phone, subtotal, tax and total input objects-->
+<script>
+
+	updateTotals();
+	toggleAddress();
+
+	function toggleAddress(){
+		var x = document.getElementsByName("addressInfo");
+		if (x[0].style.display == "none"){
+			x[0].style.display = "block";
+			x[1].style.display = "block";
+			return;
+		}
+		x[0].style.display = "none";
+		x[1].style.display = "none";
+		return;
+	}
+
+	function updateTotals() {
+		for (let i = 0; i < menuItems.length; i++) {
+			let quantity = document.getElementsByTagName("select");
+			quantity[i].onchange = function() {updateTotals()};
+			let totalPerItem = document.getElementsByName("cost");
+			totalPerItem[i].value = parseFloat((quantity[i].value * menuItems[i].cost).toFixed(2));
+		}
+		let subtotal = document.getElementById("subtotal");
+		var subtotalFloat = 0;
+		for (let i = 0; i < menuItems.length; i++) {
+			let totalPerItem = document.getElementsByName("cost");
+			subtotalFloat += parseFloat(totalPerItem[i].value);
+		}
+		subtotal.value = subtotalFloat;
+		let tax = document.getElementById("tax");
+		tax.value = parseFloat((subtotalFloat * 0.0625).toFixed(2));
+		document.getElementById("total").value = (parseFloat(tax.value) + parseFloat(subtotalFloat)).toFixed(2);
+	}
+
+	function validateForm(){
+		let number = document.getElementById("phone").value;
+		if (document.getElementsByName("lname")[0].value == ""){
+			alert("Cannot process order: Please provide a last name.");
+			return false;
+		}
+		if (!validPhoneNumber(getPhoneNumber(number))){
+			alert("Cannot process order: Please provide a valid phone number.");
+			return false;
+		}
+		else if (document.getElementById("total").value == 0){
+			alert("Cannot process order: Please choose an item.");
+			return false;
+		}
+		else if (document.getElementsByName("addressInfo")[1].style.display != "none"){
+			if (document.getElementsByName("street")[0].value == "" ||
+				document.getElementsByName("city")[0].value == "")  {
+					alert("Cannot process order: Please enter an address for delivery.");
+					return false;
+				}
+		}
+		return true;
+	}
+
+	function validPhoneNumber(phoneNumber) {
+		if (getPhoneNumber(phoneNumber).length == 12){
+			return true;
+		}
+		return false;
+	}
+
+	function getPhoneNumber(number) {
+		number = number.replace(/\+1|\D/g, "");
+		number = number.slice(0,3) + " " + number.slice(3,6) + " " + number.slice(6);
+		return number;
+	}
+
+	function submitOrder() {
+		if (!validateForm()){
+			return;
+		}
+		alert(displayOrder());
+	}
+
+	function displayOrder(){
+		var message = "You ordered:\n";
+		for (let i = 0; i < menuItems.length; i++) {
+			if (document.getElementsByTagName("select")[i].value != 0){
+				message += document.getElementsByTagName("select")[i].value.toString();
+				message += " " + menuItems[i].name + "\n";
+			}
+		}
+		message += "\nTotal is: $" + document.getElementById("total").value.toString() + "\n";
+		message += "Order will be ready at ";
+		message += pickupTime() + "\n";
+		message += "We will call: " + 
+					getPhoneNumber(document.getElementById("phone").value) + " when ready."
+		message += "\n\nThank you for dining with us."
+		console.log(message);
+		return message
+	}
+	
+	function pickupTime(){
+		const d = new Date();
+		let hours = d.getUTCHours() - 4;
+		let minutes = d.getUTCMinutes();
+		
+		if (minutes > 45){
+			minutes = minutes - (60-15);
+			hours += 1;
+		} else {
+			minutes += 15;
+		}
+
+		if (document.getElementsByName("addressInfo")[1].style.display != "none"){
+			if (minutes > 45){
+				minutes = minutes - (60-15);
+				hours += 1;
+			} else {
+				minutes += 15;
+			}
+		}
+
+		if (hours > 12){
+			hours = hours - 12;
+		}
+		
+		let h = addZero(hours);
+		let m = addZero(minutes);
+		let time = h + ":" + m;
+		return time;
+	}
+
+	function addZero(i) {
+		if (i < 10) {i = "0" + i}
+		return i;
+	}
+</script>
+</html>
