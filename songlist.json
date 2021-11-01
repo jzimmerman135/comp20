@@ -1,0 +1,53 @@
+[
+    {
+        "name" : "Just the Other Side Of Nowhere",
+        "artist" : "Kris Kristofferson",
+        "genre" : "Country",
+        "released" : "1970"
+    },
+    {   "name" : "Sunday Morning Coming Down",
+        "artist" : "Kris Kristofferson",
+        "genre" : "Country",
+        "released" : "1970"
+    },
+    {   "name" : "Casey's Last Ride",
+        "artist" : "Kris Kristofferson",
+        "genre" : "Country",
+        "released" : "1970"
+    },
+    {   "name" : "If I Were A Carpenter",
+        "artist" : "Ramblin' Jack Elliot",
+        "genre" : "Folk",
+        "released" : "1968"
+    },
+    {   "name" : "Don't Think Twice It's Alright",
+        "artist" : "Ramblin' Jack Elliot",
+        "genre" : "Folk",
+        "released" : "1968"
+    },
+    {   "name" : "Waitin Around To Die",
+        "artist" : "Townes Van Zandt",
+        "genre" : "Country",
+        "released" : "1969"
+    },
+    {   "name" : "Morning Dew",
+        "artist" : "Grateful Dead",
+        "genre" : "Jam",
+        "released" : "1967"
+    },
+    {   "name" : "Blue Moon of Kentucky",
+        "artist" : "Bill Monroe",
+        "genre" : "Bluegrass",
+        "released" : "1947"
+    },
+    {   "name" : "Flesh and Blood",
+        "artist" : "Johnny Cash",
+        "genre" : "Country",
+        "released" : "1970"
+    },
+    {   "name" : "Que Sera Sera",
+        "artist" : "Sly and the Family Stone",
+        "genre" : "Funk",
+        "released" : "1973"
+    }
+]
