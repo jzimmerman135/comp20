@@ -1,0 +1,99 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JSON Song List</title>
+</head>
+<style>
+    .song {
+        display: flex;
+        flex-direction: column;
+        padding: 1rem;
+        border-style: solid;
+        width: fit-content;
+    }
+    #viewable {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+        width: 80%;
+    }
+</style>
+<body>
+    <button onclick="showSerialized()">Show Serialized Set List</button>
+    <button onclick="showViewable()">Show Set List</button>
+    <select id="selectGenre">
+        <option>Country</option>
+        <option>Folk</option>
+        <option>Jam</option>
+        <option>Bluegrass</option>
+        <option>Funk</option>
+    </select> 
+    <button onclick="filter()">Filter Genre</button>
+    <br><br>
+    <div id="serialized"></div>
+    <div id="viewable"></div>
+</body>
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"   integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="   crossorigin="anonymous"></script>
+<script>
+    var setList;
+    $(document).ready( function() {
+        $.getJSON("https://jzimmerman135.github.io/comp20/songlist.json", 
+            function( data ) { setList = data });
+    });
+
+    function showSerialized() {
+        document.getElementById("serialized").style.display = "block";
+        var setListString = JSON.stringify(setList);
+        document.getElementById("serialized").innerHTML = setListString;
+        document.getElementById("viewable").style.display = "none";
+    }
+
+    function showViewable() {
+        removeAllChildNodes("viewable");
+        document.getElementById("viewable").style.display = "flex";
+        document.getElementById("serialized").style.display = "none";
+        for (let i = 0; i < setList.length; i++) {
+            createSongBox(i);
+        }
+    }
+
+    function createSongBox(i){
+        var songBox = document.createElement("div");
+        songBox.className = "song";
+        var name = document.createElement("div");
+        var artist = document.createElement("div");
+        var genre = document.createElement("div"); 
+        var released = document.createElement("div"); 
+        name.innerHTML = setList[i].name;
+        artist.innerHTML = setList[i].artist;
+        genre.innerHTML = setList[i].genre;
+        released.innerHTML = setList[i].released;
+        songBox.appendChild(name);
+        songBox.appendChild(artist);
+        songBox.appendChild(genre);
+        songBox.appendChild(released);
+        document.getElementById("viewable").appendChild(songBox);
+    }
+
+    function removeAllChildNodes(id) {
+        let parent = document.getElementById(id);
+        while (parent.firstChild) {
+            parent.removeChild(parent.firstChild);
+        }
+    }
+
+    function filter() {
+        showViewable();
+        var selectedGenre = document.getElementById("selectGenre").value;
+        var songs = document.getElementsByClassName("song");
+        for (let i=0;i<songs.length;i++){
+            if (setList[i].genre != selectedGenre){
+                songs[i].style.display = "none";
+            }
+        }
+    }
+</script>
+</html>
