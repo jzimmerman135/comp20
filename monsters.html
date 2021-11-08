@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Monster</title>
+</head>
+<body>
+    <h1 id="monster" style="width:40ch"></h1>
+    <input id="text" value="19123">
+    <button id="button" onclick="getZip()">Click for zipcode info</button>
+</body>
+
+<script>
+var info;
+function getZip() {
+    let zip = document.getElementById("text").value;
+    zip = zip.replace(/\D/g,"");
+    if (zip.length != 5){
+        document.getElementById("monster").innerHTML = "Enter a real zip code";
+        return;
+    }
+
+    let apilink = "http://api.zippopotam.us/us/".concat(zip);
+    console.log(apilink);
+    var client = new XMLHttpRequest();
+    client.open("GET", apilink, true);
+    console.log("opened request file");
+    client.onreadystatechange = function() {
+        console.log("3 - readystatechange event fired.");
+        if (client.readyState == 4 && client.status == 200) {
+            // Step 5: wait for done + success
+            console.log("5 - response received");
+            result = client.responseText;
+            
+            info = JSON.parse(result);
+            console.log(info);
+            showZip();
+        }
+        else if (client.readyState == 4 && client.status != 200) {
+            document.getElementById("monster").innerHTML = "Whoops, Something is not right. Double-check your zipcode";
+        }
+        else if (client.readyState == 3) {
+            document.getElementById("monster").innerHTML = "Still retrieving. Please try again";
+        }
+    }
+    client.send();  
+}
+
+function showZip(){
+    document.getElementById("monster").innerHTML = info.places[0]["place name"] + ", ";
+    document.getElementById("monster").innerHTML += info.places[0]["state"];
+}
+
+</script>
+</html>
