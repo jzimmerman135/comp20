@@ -32,19 +32,15 @@ function getZip() {
     }
 
     let apilink = "https://api.zippopotam.us/us/".concat(zip);
-    console.log(apilink);
     var client = new XMLHttpRequest();
     client.open("GET", apilink, true);
-    console.log("opened request file");
+ 
     client.onreadystatechange = function() {
         console.log("3 - readystatechange event fired.");
         if (client.readyState == 4 && client.status == 200) {
             // Step 5: wait for done + success
-            console.log("5 - response received");
             result = client.responseText;
-            
             info = JSON.parse(result);
-            console.log(info);
             showZip();
         }
         else if (client.readyState == 4 && client.status != 200) {
